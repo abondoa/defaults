@@ -1,0 +1,119 @@
+[
+	{ "keys": ["ctrl+alt+n"], "command":"advanced_new_file" },
+    { "keys": ["ctrl+alt+d"], "command": "find_all_under" },
+    { "keys": ["ctrl+shift+c"], "command": "calculate", "args": {"replace": true} },
+    { "keys": ["ctrl+shift+="], "command": "calculate", "args": {"replace": false} },
+    { "keys": ["ctrl+b"], "command": "build" , "context":[{"operator": "equal", "key": "selector", "operand": "text.tex.latex"}]}, // Override LaTeXSQ stupid build system
+    { "keys": ["ctrl+shift+alt+1"], "command": "calculate_count" },
+    { "keys": ["ctrl+o"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
+    { "keys": ["alt+backspace"], "command": "run_macro_file", "args": {"file": "Packages/User/delete_subword_backward.sublime-macro"} },
+    { "keys": ["alt+delete"], "command": "run_macro_file", "args": {"file": "Packages/User/delete_subword_forward.sublime-macro"} },
+    //{ "keys": ["ctrl+alt+1"], "command": "prompt_insert_nums" },
+    //{ "keys": ["ctrl+shift+alt+n"], "command": "prompt_insert_nums", "args": { "automatic": false } },
+
+    // Auto-pair quotes LaTeX
+    { "keys": ["\""], "command": "insert_snippet", "args": {"contents": "``$0''"}, "context":
+        [
+            { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "following_text", "operator": "regex_contains", "operand": "^(?:\t| |\\)|]|\\}|>|$)", "match_all": true },
+            { "key": "preceding_text", "operator": "not_regex_contains", "operand": "[\"a-zA-Z0-9_]$", "match_all": true },
+            { "key": "eol_selector", "operator": "not_equal", "operand": "string.quoted.double", "match_all": true },
+            { "key": "selector", "operator": "equal", "operand": "text.tex.latex", "match_all": true }
+        ]
+    },
+    { "keys": ["\""], "command": "insert_snippet", "args": {"contents": "``${0:$SELECTION}''"}, "context":
+        [
+            { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+            { "key": "selection_empty", "operator": "equal", "operand": false, "match_all": true },
+            { "key": "selector", "operator": "equal", "operand": "text.tex.latex", "match_all": true }
+        ]
+    },
+
+    // Commented linebreak LaTeX
+
+    { "keys": ["enter"], "command": "insert_snippet", "args": {"contents": "\n%% $0"}, "context":
+        [
+            { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "preceding_text", "operator": "regex_contains", "operand": "^%% .*", "match_all": true },
+            { "key": "selector", "operator": "equal", "operand": "text.tex.latex", "match_all": true }
+        ]
+    },
+
+    // Itemized linebreak LaTeX
+
+    { "keys": ["enter"], "command": "insert_snippet", "args": {"contents": "\n\\item $0"}, "context":
+        [
+            { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "preceding_text", "operator": "regex_contains", "operand": "^(\t| )*\\\\item .*", "match_all": true },
+            { "key": "selector", "operator": "equal", "operand": "text.tex.latex", "match_all": true }
+        ]
+    },
+
+    { "keys": ["enter"], "command": "insert_snippet", "args": {"contents": "\n\\item<$1> $2"}, "context":
+        [
+            { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "preceding_text", "operator": "regex_contains", "operand": "^(\t| )*\\\\item<.*", "match_all": true },
+            { "key": "selector", "operator": "equal", "operand": "text.tex.latex", "match_all": true }
+        ]
+    },
+
+    { "keys": ["enter"], "command": "insert_snippet", "args": {"contents": "\n\\item[$1] $2"}, "context":
+        [
+            { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "preceding_text", "operator": "regex_contains", "operand": "^(\t| )*\\\\item\\[.*", "match_all": true },
+            { "key": "selector", "operator": "equal", "operand": "text.tex.latex", "match_all": true }
+        ]
+    },
+
+    { "keys": ["enter"], "command": "delete_word", "args": { "forward": false }, "context":
+        [
+            { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "preceding_text", "operator": "regex_contains", "operand": "^(\t| )*\\\\item( |\\[.*\\]|<.*>) *$", "match_all": true },
+            { "key": "selector", "operator": "equal", "operand": "text.tex.latex", "match_all": true }
+        ]
+    },
+
+    // LaTeX Danish characters
+
+    { "keys": ["å"], "command": "insert", "args": {"characters": "\\aa{}"}, "context":
+        [
+            { "key": "selector", "operator": "equal", "operand": "text.tex.latex", "match_all": true }
+        ]
+    },
+
+    { "keys": ["Å"], "command": "insert", "args": {"characters": "\\Aa{}"}, "context":
+        [
+            { "key": "selector", "operator": "equal", "operand": "text.tex.latex", "match_all": true }
+        ]
+    },
+
+    { "keys": ["æ"], "command": "insert", "args": {"characters": "\\ae{}"}, "context":
+        [
+            { "key": "selector", "operator": "equal", "operand": "text.tex.latex", "match_all": true }
+        ]
+    },
+
+    { "keys": ["Æ"], "command": "insert", "args": {"characters": "\\Ae{}"}, "context":
+        [
+            { "key": "selector", "operator": "equal", "operand": "text.tex.latex", "match_all": true }
+        ]
+    },
+
+    { "keys": ["ø"], "command": "insert", "args": {"characters": "\\o{}"}, "context":
+        [
+            { "key": "selector", "operator": "equal", "operand": "text.tex.latex", "match_all": true }
+        ]
+    },
+
+    { "keys": ["Ø"], "command": "insert", "args": {"characters": "\\O{}"}, "context":
+        [
+            { "key": "selector", "operator": "equal", "operand": "text.tex.latex", "match_all": true }
+        ]
+    }
+]

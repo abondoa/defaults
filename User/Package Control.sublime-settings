@@ -1,0 +1,31 @@
+{
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"AdvancedNewFile",
+		"Better TypeScript",
+		"Calculate",
+		"FindKeyConflicts",
+		"Google Spell Check",
+		"INI",
+		"Insert Nums",
+		"LaTeXTools",
+		"Maven",
+		"Package Control",
+		"QML",
+		"ScopeAlways",
+		"SFTP",
+		"SublimeLatexTopping",
+		"SublimeLinter",
+		"SublimeLinter-pylint"
+	],
+	"repositories":
+	[
+		"https://github.com/rasmusprentow/SublimeLatexTopping.git",
+		"https://github.com/jbrooksuk/InsertNums.git",
+		"https://github.com/patchspace/sparql-sublime.git",
+		"https://github.com/facelessuser/ScopeHunter.git"
+	]
+}
